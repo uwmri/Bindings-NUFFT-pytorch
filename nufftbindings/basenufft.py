@@ -47,23 +47,23 @@ class baseNUFFT:
     def test_f(self, f):
         if f.shape[0] != self.Nbatch and f.shape[0]!=1:
             raise Exception("The batch size does not correspond to the one indicated in set_dims. Expected the first dimension to be of size "+str(self.Nbatch)+" but got shape[0]="+str(f.shape[0]))
-    def forward(self, f, xi):
+    def forward(self, f, xi, smaps=None):
         if self.ndim==2:
-            return self._forward2D(f, xi)
+            return self._forward2D(f, xi, smaps)
         elif self.ndim==3:
-            return self._forward3D(f, xi)
-    def adjoint(self, y, xi):
+            return self._forward3D(f, xi, smaps)
+    def adjoint(self, y, xi, smaps=None):
         if self.ndim==2:
-            return self._adjoint2D(y, xi)
+            return self._adjoint2D(y, xi, smaps)
         elif self.ndim==3:
-            return self._adjoint3D(y, xi)
-    def backward_forward(self, f, g, xi):
+            return self._adjoint3D(y, xi, smaps)
+    def backward_forward(self, f, g, xi, smaps=None):
         if self.ndim==2:
-            return self._backward_forward2D(f, g, xi)
+            return self._backward_forward2D(f, g, xi, smaps)
         elif self.ndim==3:
-            return self._backward_forward3D(f, g, xi)
-    def backward_adjoint(self, y, g, xi):
+            return self._backward_forward3D(f, g, xi, smaps)
+    def backward_adjoint(self, y, g, xi,smaps=None):
         if self.ndim==2:
-            return self._backward_adjoint2D(y, g, xi)
+            return self._backward_adjoint2D(y, g, xi, smaps)
         elif self.ndim==3:
-            return self._backward_adjoint3D(y, g, xi)
+            return self._backward_adjoint3D(y, g, xi, smaps)
